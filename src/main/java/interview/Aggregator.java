@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 class Aggregator {
-    public void aggregateAndPrint(List<Map<String, List<Offset>>> matcherResults) {
+    private final Map<String, List<Offset>> aggregatedResults = new HashMap<>();
 
-        Map<String, List<Offset>> aggregatedResults = new HashMap<>();
-
+    public void aggregate(List<Map<String, List<Offset>>> matcherResults) {
         matcherResults.forEach(result ->
                 result.forEach((keyword, offsets) ->
                         aggregatedResults.merge(keyword, new ArrayList<>(offsets), (list1, list2) -> {
@@ -18,12 +17,18 @@ class Aggregator {
                         })
                 )
         );
+    }
 
+    public Map<String, List<Offset>> getAggregatedResults() {
+        return aggregatedResults;
+    }
+
+    public void print(){
         System.out.println("Aggregated Results:");
         aggregatedResults.forEach((keyword, offsets) -> {
             System.out.print(keyword + " --> ");
             System.out.println(offsets);
         });
-
     }
+
 }

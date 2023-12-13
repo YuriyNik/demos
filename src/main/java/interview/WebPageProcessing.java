@@ -75,7 +75,8 @@ public class WebPageProcessing {
         //txt reading and matching completed
         // now run aggregation
         Aggregator aggregator = new Aggregator();
-        aggregator.aggregateAndPrint(matcherResults);
+        aggregator.aggregate(matcherResults);
+        aggregator.print();
 
     }
 

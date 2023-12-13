@@ -29,7 +29,13 @@ public class WordMatcherTests {
         assertEquals(new Offset(chunkNumber, 10), matches.get("programming").get(0));
         assertEquals(new Offset(chunkNumber, 43), matches.get("example").get(0));
     }
+    @Test
+    void testKeywords(){
+     //   List<String> keywords = List.of("James","John","Robert","Michael","William","David","Richard","Charles","Joseph","Thomas","Christopher","Daniel","Paul","Mark","Donald","George","Kenneth","Steven","Edward","Brian","Ronald","Anthony","Kevin","Jason","Matthew","Gary","Timothy","Jose","Larry","Jeffrey","Frank","Scott","Eric","Stephen","Andrew","Raymond","Gregory","Joshua","Jerry","Dennis","Walter","Patrick","Peter","Harold","Douglas","Henry","Carl","Arthur","Ryan","Roger");
+     //   WordsMatcher wordsMatcher = new WordsMatcher(keywords);
+      //  System.out.println(wordsMatcher);
 
+    }
 
 
 }
