@@ -1,4 +1,4 @@
-package interview;
+package interview.matcher;
 
 import java.util.Objects;
 

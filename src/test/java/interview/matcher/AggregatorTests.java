@@ -1,4 +1,6 @@
-package interview;
+package interview.matcher;
+import interview.matcher.Aggregator;
+import interview.matcher.Offset;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

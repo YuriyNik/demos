@@ -1,5 +1,7 @@
-package interview;
+package interview.matcher;
 
+import interview.matcher.Offset;
+import interview.matcher.WordsMatcher;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
