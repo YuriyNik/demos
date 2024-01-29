@@ -17,6 +17,7 @@ public class SortingFunctions {
     public static int maxStreak(String[] data, int m  ){
         String target = "Y".repeat(m);
         int count = 0;
+        int maxcount= 0;
         for (String value : data) {
             if (target.equals(value)) {
                 count++;
