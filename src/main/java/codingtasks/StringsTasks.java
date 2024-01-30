@@ -38,8 +38,10 @@ public class StringsTasks {
     public static int countJuwerly(String stones, String juwerly) {
         char[] stoneChars = stones.toCharArray();
         int qty = 0;
-        for (int i = 0; i < stoneChars.length; i++) {
-            if (juwerly.indexOf(stoneChars[i])!=-1){qty++;}
+        for (char stoneChar : stoneChars) {
+            if (juwerly.indexOf(stoneChar) != -1) {
+                qty++;
+            }
         }
         return qty;
     }
