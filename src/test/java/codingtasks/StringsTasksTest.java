@@ -3,27 +3,33 @@ package codingtasks;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class StringsTasksTest {
     @Test
     public void test_getFirstEvenString(){
-        assertEquals("there",StringsTasks.getFirstEvenString("Hello there, it is a nice day"));
+        assertEquals("there,",StringsTasks.getFirstEvenString("Hello there, it is a nice day"));
+        assertEquals("even length word not found",StringsTasks.getFirstEvenString("Hello there it1 is1 a nice1 day"));
+
     }
 
     @Test
     public void test_isPalindrome(){
         assertTrue(StringsTasks.isPalindrome("racecar"));
+        assertFalse(StringsTasks.isPalindrome("racecar1"));
+        assertFalse(StringsTasks.isPalindrome(""));
+        assertFalse(StringsTasks.isPalindrome(null));
     }
 
     @Test
     public void test_reverse() {
-        assertEquals("funny are cats", StringsTasks.reverse("cats are funny"));
+        assertEquals("hello funny are cats", StringsTasks.reverse("cats are funny hello"));
     }
     @Test
     public void test_countJuwerly() {
         assertEquals(3,StringsTasks.countJuwerly("stones","st"));
+        assertEquals(3,StringsTasks.countJuwerly("stones","sta"));
+        assertEquals(4,StringsTasks.countJuwerly("stones","sto"));
     }
     @Test
     public void test_RLEencoder(){
