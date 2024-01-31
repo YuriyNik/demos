@@ -51,7 +51,26 @@ public class StringsTasks {
     }
 
     public static String getRLE(String input){
-        return "";
+        if ((Objects.equals(input, ""))|(input==null)) return "";
+        StringBuilder output = new StringBuilder();
+        int charqty=1;
+        char current;
+        char prev=input.charAt(0);
+        output.append(prev);
+        for (int i = 1; i < input.length(); i++) {
+            current = input.charAt(i);
+            if (prev==current) {
+                charqty++;
+            } else {
+                if (charqty>1) output.append(charqty);
+                charqty=1;
+                output.append(current);
+                prev = current;
+            }
+        }
+        if (charqty>1) output.append((charqty));
+
+        return output.toString();
     }
 
 }

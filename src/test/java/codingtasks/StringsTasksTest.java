@@ -33,8 +33,8 @@ class StringsTasksTest {
     }
     @Test
     public void test_RLEencoder(){
-      //  assertEquals("A4B3C2XYZD4E3F3A6B28", StringsTasks.getRLE("AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB"));
-      //  assertEquals("ABC", StringsTasks.getRLE("ABC"));
+        assertEquals("A4B3C2XYZD4E3F3A6B28", StringsTasks.getRLE("AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB"));
+        assertEquals("ABC", StringsTasks.getRLE("ABC"));
         assertEquals("", StringsTasks.getRLE(""));
     }
 
