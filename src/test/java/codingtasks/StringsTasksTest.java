@@ -1,7 +1,9 @@
 package codingtasks;
 
 import org.junit.jupiter.api.Test;
-import java.util.List;
+
+import java.nio.charset.Charset;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,7 +43,14 @@ class StringsTasksTest {
     @Test
     public void test_Anagram(){
         String[] words = {"eat", "tea", "tan", "ate", "nat", "bat"};
-        List<List<String>> result = StringsTasks.getAnagram(words);
+        List<List<String>> result =
+                StringsTasks.getAnagram(words);
+        List<List<String>> output = Arrays.asList(
+                Arrays.asList("eat", "tea", "ate"),
+                List.of("bat"),
+                Arrays.asList("tan", "nat")
+        );
+        assertEquals(output,result);
         //Sample Input: [eat, tea, tan, ate, nat, bat]
         //Sample Output: [[eat, tea, ate], [bat], [tan, nat]]
 

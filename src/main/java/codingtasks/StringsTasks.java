@@ -1,7 +1,6 @@
 package codingtasks;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class StringsTasks {
     public static String getFirstEvenString(String sentence){
@@ -45,9 +44,15 @@ public class StringsTasks {
         }
         return qty;
     }
-    public static List<List<String>> getAnagram(String[] strings) {
-
-    return null;
+    public static List<List<String>> getAnagram(String[] words) {
+        Map<String , List<String>> anagram = new HashMap<>();
+        for(String word:words){
+            char[] charArray = word.toCharArray();
+            Arrays.sort(charArray);
+            String sortedWord= new String(charArray);
+            anagram.computeIfAbsent(sortedWord,k->new ArrayList<>()).add(word);
+        }
+    return anagram.values().stream().toList();
     }
 
     public static String getRLE(String input){
