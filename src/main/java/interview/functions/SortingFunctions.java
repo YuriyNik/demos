@@ -4,7 +4,7 @@ package interview.functions;
 
 public class SortingFunctions {
     public static void main(String[] args) {
-        String[] data = {"YYY","YYY","YNN","YYN","YYN"};
+        String[] data = {"YYN","YYY","YYY","YYN","YYN"};
         System.out.println(maxStreak(data,3));
         String[] data2 = {"YN","YY","YN","YY","YY"};
         System.out.println(maxStreak(data2,2));
@@ -21,9 +21,11 @@ public class SortingFunctions {
         for (String value : data) {
             if (target.equals(value)) {
                 count++;
+                maxcount = Math.max(maxcount,count);
             }
+            else count=0;
         }
-        return count;
+        return maxcount;
     }
 
 
