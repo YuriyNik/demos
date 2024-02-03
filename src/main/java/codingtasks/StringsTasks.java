@@ -80,8 +80,34 @@ public class StringsTasks {
 
 
     public static boolean canTransformWithOneEdit(String original, String target){
-        ///
-        return false;
+        if (original.equals(target)) {
+            return true; // Никаких изменений не требуется
+        }
+
+        int lenOriginal = original.length();
+        int lenTarget = target.length();
+        int differences = Math.abs(lenOriginal - lenTarget);
+
+        if (differences > 1) {
+            return false; // Разница в длине больше 1 не позволяет выполнить условие одним изменением
+        }
+
+        int changes = 0;
+        for (int i = 0, j = 0; i < lenOriginal && j < lenTarget; i++, j++) {
+            if (original.charAt(i) != target.charAt(j)) {
+                changes++;
+                if (changes > 1) {
+                    return false; // Более одного изменения
+                }
+                if (lenOriginal > lenTarget) {
+                    j--; // Удаление символа из original
+                } else if (lenOriginal < lenTarget) {
+                    i--; // Удаление символа из target
+                }
+            }
+        }
+
+        return changes<=1;
     }
 
 }
