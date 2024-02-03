@@ -78,4 +78,10 @@ public class StringsTasks {
         return output.toString();
     }
 
+
+    public static boolean canTransformWithOneEdit(String original, String target){
+        ///
+        return false;
+    }
+
 }

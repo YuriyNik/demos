@@ -54,6 +54,19 @@ class StringsTasksTest {
 
     }
 
+    @Test
+    void test_canTransformWithOneEdit() {
+        assertTrue(StringsTasks.canTransformWithOneEdit("abc", "abc"));
+        assertTrue(StringsTasks.canTransformWithOneEdit("abc", "adc"));
+        assertTrue(StringsTasks.canTransformWithOneEdit("abc", "abcd"));
+        assertTrue(StringsTasks.canTransformWithOneEdit("abcd", "abc"));
+        assertFalse(StringsTasks.canTransformWithOneEdit("abc", "a"));
+        assertTrue(StringsTasks.canTransformWithOneEdit("", ""));
+        assertTrue(StringsTasks.canTransformWithOneEdit("a", ""));
+        assertTrue(StringsTasks.canTransformWithOneEdit("", "a"));
+        assertFalse(StringsTasks.canTransformWithOneEdit("abc", "ade"));
+    }
+
 
 
 }
