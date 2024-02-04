@@ -2,6 +2,7 @@ package codingtasks;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,11 +21,11 @@ public class NumbersTasksTest {
     @Test
     public void test_findIntersection(){
         assertArrayEquals(new Integer[] {1, 2, 2, 3},
-                NumbersTasks.findIntersection(new int[] {1, 2, 3, 2, 0}, new int[] {5, 1, 2, 7, 3, 2}).toArray(new Integer[0]));
+                NumbersTasks.findIntersection(new int[] {1, 2, 3, 2, 0}, new int[] {5, 1, 2, 7, 3, 2}).toArray());
         assertArrayEquals(new Integer[] {},
-                NumbersTasks.findIntersection(new int[] {4, 9, 5}, new int[] {9, 8, 7}).toArray(new Integer[0]));
-        assertArrayEquals(new Integer[] {9},
-                NumbersTasks.findIntersection(new int[] {4, 9, 5}, new int[] {9, 4, 9, 8, 4}).toArray(new Integer[0]));
+                NumbersTasks.findIntersection(new int[] {4, 3, 5}, new int[] {9, 8, 7}).toArray());
+        assertArrayEquals(new Integer[] {4,9},
+                NumbersTasks.findIntersection(new int[] {4, 9, 5}, new int[] {9, 4, 9, 8, 4}).toArray());
 
     }
     @Test
