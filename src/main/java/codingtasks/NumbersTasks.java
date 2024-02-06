@@ -28,7 +28,38 @@ public class NumbersTasks {
     }
 
     public static String convertListToRangeString(List<Integer> numbers) {
-    return null;
+        if (numbers == null || numbers.isEmpty()) {
+            return "";
+        }
+
+        Collections.sort(numbers); // Сортируем список для последовательного прохода
+
+        StringBuilder rangeStr = new StringBuilder();
+        Integer start = numbers.get(0);
+        Integer end = start;
+
+        for (int i = 1; i < numbers.size(); i++) {
+            if (numbers.get(i) == end + 1) {
+                end = numbers.get(i);
+            } else {
+                appendRange(rangeStr, start, end);
+                start = numbers.get(i);
+                end = start;
+            }
+        }
+        appendRange(rangeStr, start, end); // Добавляем последний диапазон
+
+        return rangeStr.toString();
+    }
+    private static void appendRange(StringBuilder rangeStr, Integer start, Integer end) {
+        if (rangeStr.length() > 0) {
+            rangeStr.append(",");
+        }
+        if (!start.equals(end)) {
+            rangeStr.append(start).append("-").append(end);
+        } else {
+            rangeStr.append(start);
+        }
     }
 
     public static int findMaxConsecutiveOnes(int[] nums) {
