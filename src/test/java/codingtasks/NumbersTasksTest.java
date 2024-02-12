@@ -45,6 +45,7 @@ public class NumbersTasksTest {
         assertEquals(5, NumbersTasks.findMaxConsecutiveOnes(new int[]{1, 0, 1, 1, 0, 1, 1, 1}));
         assertEquals(0, NumbersTasks.findMaxConsecutiveOnes(new int[]{0, 0, 0}));
         assertEquals(1, NumbersTasks.findMaxConsecutiveOnes(new int[]{1}));
+        assertEquals(4, NumbersTasks.findMaxConsecutiveOnes(new int[]{1, 0, 1,1, 1, 0, 1, 0, 1}));
     }
     @Test
     void findMaxGuestsTest() {

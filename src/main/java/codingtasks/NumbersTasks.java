@@ -63,7 +63,20 @@ public class NumbersTasks {
     }
 
     public static int findMaxConsecutiveOnes(int[] nums) {
-        return -1;
+        int max_length=0;
+        int curr_length=0;
+        int prev_length=0;
+        for (int num:nums){
+         if (num==1) {
+             curr_length++;
+         } else {
+                 max_length = Math.max((curr_length+prev_length),max_length);
+                 prev_length=curr_length;
+                 curr_length=0;
+         }
+
+        }
+        return Math.max((curr_length+prev_length),max_length);
     }
 
     public static int findMaxGuests(List<int[]> stays) {
