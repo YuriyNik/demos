@@ -84,10 +84,4 @@ public class StringsTasks {
         return false;
     }
 
-
-    public static boolean canTransformWithOneEdit(String original, String target){
-        ///
-        return false;
-    }
-
 }
