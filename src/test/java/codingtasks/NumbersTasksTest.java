@@ -60,15 +60,29 @@ public class NumbersTasksTest {
         // Тест 1
         int[][] intervals1 = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
         int[][] expected1 = {{1, 6}, {8, 10}, {15, 18}};
-        assertEquals(NumbersTasks.mergeIntervals(intervals1),expected1);
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals1),expected1);
         // Тест 2
         int[][] intervals2 = {{1, 4}, {4, 5}};
         int[][] expected2 = {{1, 5}};
-        assertEquals(NumbersTasks.mergeIntervals(intervals2),expected2);
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals2),expected2);
         // Тест 3
         int[][] intervals3 = {{1, 3}, {100, 200}, {2, 4}};
         int[][] expected3 = {{1, 4}, {100, 200}};
-        assertEquals(NumbersTasks.mergeIntervals(intervals3),expected3);
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals3),expected3);
+        // Тест 4
+        int[][] intervals4 = {{1, 3}, {100, 200}, {5, 7}};
+        int[][] expected4 = {{1, 3},{5,7}, {100, 200}};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals4),expected4);
+        // Тест 5
+        int[][] intervals5 = {{1, 3}};
+        int[][] expected5 = {{1, 3}};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals5),expected5);
+        // Тест 6
+        int[][] intervals6 = {};
+        int[][] expected6 = {};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals6),expected6);
+        //test 7
+        assertArrayEquals(NumbersTasks.mergeIntervals(null),null);
     }
 
 }
