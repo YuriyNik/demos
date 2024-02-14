@@ -82,5 +82,8 @@ public class NumbersTasks {
     public static int findMaxGuests(List<int[]> stays) {
         return -1;
     }
+    public static int[][] mergeIntervals(int[][] intervals) {
+        return null;
+    }
 
     }
