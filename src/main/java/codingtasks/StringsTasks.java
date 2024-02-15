@@ -110,4 +110,20 @@ public class StringsTasks {
         return changes<=1;
     }
 
+    public static int lengthOfLongestSubstring(String s) {
+        if (s == null || s.isEmpty()) return 0;
+        HashMap<Character, Integer> map = new HashMap<>(); // Для хранения последних позиций символов
+        int maxLength = 0; // Максимальная длина подстроки без повторений
+
+        for (int start = 0, end = 0; end < s.length(); end++) {
+            char currentChar = s.charAt(end);
+            if (map.containsKey(currentChar)) {
+                start = Math.max(start, map.get(currentChar) + 1); // Сдвигаем начало окна, если встретили повторение
+            }
+            map.put(currentChar, end); // Обновляем последнюю позицию символа
+            maxLength = Math.max(maxLength, end - start + 1); // Обновляем максимальную длину
+        }
+        return maxLength;
+    }
+
 }
