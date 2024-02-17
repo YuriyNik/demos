@@ -135,15 +135,45 @@ public class NumbersTasks {
             for (int i=1; i<=num; i++) f[i] = f[i >> 1] + (i & 1);
             return f;
         }
+//1481. Least Number of Unique Integers after K Removals
+//https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals
+    public static int findLeastNumOfUniqueInts(int[] arr, int k) {
+        if (arr==null) return -1;
+        if (arr.length<1) return -1;
+        Map<Integer,Integer> mapElements = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            mapElements.put(arr[i],mapElements.getOrDefault(arr[i],0)+1);
+        }
+     //   System.out.println(mapElements);
+
+        // Создаем список из элементов map и сортируем его по значениям
+        List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(mapElements.entrySet());
+        entries.sort(Map.Entry.comparingByValue());
+
+        for (Map.Entry<Integer, Integer> entry : entries) {
+            if (k==0) {
+                break; // Прекращаем удаление, если достигли или превысили заданное число
+            }
+            int value = entry.getValue();
+            if (k - value >= 0) {
+                k -= value;
+                mapElements.remove(entry.getKey());
+            }
+        }
+
+        return mapElements.size();
+    }
 
 
     public static void main(String[] args) {
-        int[] input = {-1,0,1,2,-1,-4};
+        System.out.println(findLeastNumOfUniqueInts(new int[]{5, 5, 4},1));
+        System.out.println(findLeastNumOfUniqueInts(new int[]{4,3,1,1,3,3,2},3));
+     /*   int[] input = {-1,0,1,2,-1,-4};
         System.out.println(threeSum(input));
         System.out.println(Arrays.toString(countBits(1)));
         System.out.println(Arrays.toString(countBits(2)));
         System.out.println(Arrays.toString(countBits(5)));
         System.out.println(Arrays.toString(countBits(20)));
-
+      */
     }
     }
