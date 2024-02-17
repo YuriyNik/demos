@@ -126,4 +126,8 @@ public class StringsTasks {
         return maxLength;
     }
 
+    public static void main(String[] args) {
+
+    }
+
 }
