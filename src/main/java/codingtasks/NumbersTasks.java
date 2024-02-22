@@ -164,14 +164,37 @@ public class NumbersTasks {
         return mapElements.size();
     }
 
+    public static int findJudge(int N, int[][] trust) {
+        int[] in = new int[N + 1];
+        int[] out = new int[N + 1];
+        for (int[] a : trust) {
+            out[a[0]]++;
+            in[a[1]]++;
+            System.out.print(Arrays.toString(in));
+            System.out.print(Arrays.toString(out));
+            System.out.println();
+        }
+        for (int i = 1; i <= N; i++) {
+            if (in[i] == N - 1 && out[i] == 0)
+                return i;
+        }
+
+
+        return -1;
+    }
+
 
     public static void main(String[] args) {
+        int[][] trust= {{1,3},{2,3}};
+        System.out.println("findJudge="+findJudge(3,trust));
+
+
         int n=1;
         for (int i = 1; i <2147483647 ; i++) {
             n=n&(i+1);
             //System.out.println(n);
         }
-        System.out.println(n);
+     //   System.out.println(n);
       //  System.out.println(findLeastNumOfUniqueInts(new int[]{5, 5, 4},1));
       //  System.out.println(findLeastNumOfUniqueInts(new int[]{4,3,1,1,3,3,2},3));
      /*   int[] input = {-1,0,1,2,-1,-4};
