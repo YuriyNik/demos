@@ -166,8 +166,14 @@ public class NumbersTasks {
 
 
     public static void main(String[] args) {
-        System.out.println(findLeastNumOfUniqueInts(new int[]{5, 5, 4},1));
-        System.out.println(findLeastNumOfUniqueInts(new int[]{4,3,1,1,3,3,2},3));
+        int n=1;
+        for (int i = 1; i <2147483647 ; i++) {
+            n=n&(i+1);
+            //System.out.println(n);
+        }
+        System.out.println(n);
+      //  System.out.println(findLeastNumOfUniqueInts(new int[]{5, 5, 4},1));
+      //  System.out.println(findLeastNumOfUniqueInts(new int[]{4,3,1,1,3,3,2},3));
      /*   int[] input = {-1,0,1,2,-1,-4};
         System.out.println(threeSum(input));
         System.out.println(Arrays.toString(countBits(1)));
