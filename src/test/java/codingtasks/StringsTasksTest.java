@@ -67,6 +67,14 @@ class StringsTasksTest {
         assertFalse(StringsTasks.canTransformWithOneEdit("abc", "ade"));
     }
 
+    @Test
+    public void test_getlongestSubsting(){
+        assertEquals(5,StringsTasks.lengthOfLongestSubstring("abccafbcddddd"));
+        assertEquals(4,StringsTasks.lengthOfLongestSubstring("abccafdffedddd"));
+        assertEquals(3,StringsTasks.lengthOfLongestSubstring("abccabccdedddd"));
+        assertEquals(6,StringsTasks.lengthOfLongestSubstring("abccafbcdedddd"));
+    }
+
 
 
 }

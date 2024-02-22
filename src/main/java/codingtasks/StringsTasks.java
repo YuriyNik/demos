@@ -80,8 +80,54 @@ public class StringsTasks {
 
 
     public static boolean canTransformWithOneEdit(String original, String target){
-        ///
-        return false;
+        if (original.equals(target)) {
+            return true; // Никаких изменений не требуется
+        }
+
+        int lenOriginal = original.length();
+        int lenTarget = target.length();
+        int differences = Math.abs(lenOriginal - lenTarget);
+
+        if (differences > 1) {
+            return false; // Разница в длине больше 1 не позволяет выполнить условие одним изменением
+        }
+
+        int changes = 0;
+        for (int i = 0, j = 0; i < lenOriginal && j < lenTarget; i++, j++) {
+            if (original.charAt(i) != target.charAt(j)) {
+                changes++;
+                if (changes > 1) {
+                    return false; // Более одного изменения
+                }
+                if (lenOriginal > lenTarget) {
+                    j--; // Удаление символа из original
+                } else if (lenOriginal < lenTarget) {
+                    i--; // Удаление символа из target
+                }
+            }
+        }
+
+        return changes<=1;
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        if (s == null || s.isEmpty()) return 0;
+        HashMap<Character, Integer> map = new HashMap<>(); // Для хранения последних позиций символов
+        int maxLength = 0; // Максимальная длина подстроки без повторений
+
+        for (int start = 0, end = 0; end < s.length(); end++) {
+            char currentChar = s.charAt(end);
+            if (map.containsKey(currentChar)) {
+                start = Math.max(start, map.get(currentChar) + 1); // Сдвигаем начало окна, если встретили повторение
+            }
+            map.put(currentChar, end); // Обновляем последнюю позицию символа
+            maxLength = Math.max(maxLength, end - start + 1); // Обновляем максимальную длину
+        }
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

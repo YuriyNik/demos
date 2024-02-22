@@ -2,6 +2,7 @@ package codingtasks;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,11 +21,11 @@ public class NumbersTasksTest {
     @Test
     public void test_findIntersection(){
         assertArrayEquals(new Integer[] {1, 2, 2, 3},
-                NumbersTasks.findIntersection(new int[] {1, 2, 3, 2, 0}, new int[] {5, 1, 2, 7, 3, 2}).toArray(new Integer[0]));
+                NumbersTasks.findIntersection(new int[] {1, 2, 3, 2, 0}, new int[] {5, 1, 2, 7, 3, 2}).toArray());
         assertArrayEquals(new Integer[] {},
-                NumbersTasks.findIntersection(new int[] {4, 9, 5}, new int[] {9, 8, 7}).toArray(new Integer[0]));
-        assertArrayEquals(new Integer[] {9},
-                NumbersTasks.findIntersection(new int[] {4, 9, 5}, new int[] {9, 4, 9, 8, 4}).toArray(new Integer[0]));
+                NumbersTasks.findIntersection(new int[] {4, 3, 5}, new int[] {9, 8, 7}).toArray());
+        assertArrayEquals(new Integer[] {4,9},
+                NumbersTasks.findIntersection(new int[] {4, 9, 5}, new int[] {9, 4, 9, 8, 4}).toArray());
 
     }
     @Test
@@ -44,13 +45,44 @@ public class NumbersTasksTest {
         assertEquals(5, NumbersTasks.findMaxConsecutiveOnes(new int[]{1, 0, 1, 1, 0, 1, 1, 1}));
         assertEquals(0, NumbersTasks.findMaxConsecutiveOnes(new int[]{0, 0, 0}));
         assertEquals(1, NumbersTasks.findMaxConsecutiveOnes(new int[]{1}));
+        assertEquals(4, NumbersTasks.findMaxConsecutiveOnes(new int[]{1, 0, 1,1, 1, 0, 1, 0, 1}));
     }
     @Test
-    void findMaxGuestsTest() {
+    public void findMaxGuestsTest() {
         assertEquals(3, NumbersTasks.findMaxGuests(List.of(new int[]{1, 2}, new int[]{1, 3}, new int[]{2, 4}, new int[]{2, 3})));
         assertEquals(1, NumbersTasks.findMaxGuests(List.of(new int[]{1, 2})));
         assertEquals(2, NumbersTasks.findMaxGuests(List.of(new int[]{1, 3}, new int[]{2, 4})));
         assertEquals(0, NumbersTasks.findMaxGuests(List.of()));
+    }
+
+    @Test
+    public void testMergeIntervals(){
+        // Тест 1
+        int[][] intervals1 = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+        int[][] expected1 = {{1, 6}, {8, 10}, {15, 18}};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals1),expected1);
+        // Тест 2
+        int[][] intervals2 = {{1, 4}, {4, 5}};
+        int[][] expected2 = {{1, 5}};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals2),expected2);
+        // Тест 3
+        int[][] intervals3 = {{1, 3}, {100, 200}, {2, 4}};
+        int[][] expected3 = {{1, 4}, {100, 200}};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals3),expected3);
+        // Тест 4
+        int[][] intervals4 = {{1, 3}, {100, 200}, {5, 7}};
+        int[][] expected4 = {{1, 3},{5,7}, {100, 200}};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals4),expected4);
+        // Тест 5
+        int[][] intervals5 = {{1, 3}};
+        int[][] expected5 = {{1, 3}};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals5),expected5);
+        // Тест 6
+        int[][] intervals6 = {};
+        int[][] expected6 = {};
+        assertArrayEquals(NumbersTasks.mergeIntervals(intervals6),expected6);
+        //test 7
+        assertArrayEquals(NumbersTasks.mergeIntervals(null),null);
     }
 
 }
