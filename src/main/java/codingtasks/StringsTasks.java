@@ -126,7 +126,31 @@ public class StringsTasks {
         return maxLength;
     }
 
+    public static int strStr(String haystack, String needle) {
+        System.out.println(haystack.indexOf(needle));
+    return -1;
+    }
+
+    public static int buyChoco(int[] prices, int money) {
+        Arrays.sort(prices);
+        int interim=0;
+        for (int i=0;i<2;i++){
+            interim=prices[i]+interim;
+        }
+        if (interim<=money){
+            return money-interim;
+        } else return money;
+
+    }
+
+
     public static void main(String[] args) {
+     //   strStr("sadbutsad","sad");
+        System.out.println(buyChoco(new int[]{1,2,2},3));
+        System.out.println(buyChoco(new int[]{3,2,3},3));
+
+
+
 
     }
 
