@@ -214,26 +214,21 @@ public class NumbersTasks {
         }
         return minLen == Integer.MAX_VALUE ? -1 : minLen;
     }
-    public static void main(String[] args) {
-        int[][] trust= {{1,3},{2,3}};
-        System.out.println("findJudge="+findJudge(3,trust));
-        Queue<int[]> q = new LinkedList<>();
-        q.offer(new int[]{0, 0});
-      //  Arrays.fill()
-        int n=1;
-        for (int i = 1; i <2147483647 ; i++) {
-            n=n&(i+1);
-            //System.out.println(n);
+
+    public static int[] sortedSquares(int[] nums) {
+        int[] output = new int[nums.length];
+        for (int i=0;i<nums.length;i++)
+        {
+            output[i]= nums[i]*nums[i];
+            //System.out.println(Arrays.toString(output));
         }
-     //   System.out.println(n);
-      //  System.out.println(findLeastNumOfUniqueInts(new int[]{5, 5, 4},1));
-      //  System.out.println(findLeastNumOfUniqueInts(new int[]{4,3,1,1,3,3,2},3));
-     /*   int[] input = {-1,0,1,2,-1,-4};
-        System.out.println(threeSum(input));
-        System.out.println(Arrays.toString(countBits(1)));
-        System.out.println(Arrays.toString(countBits(2)));
-        System.out.println(Arrays.toString(countBits(5)));
-        System.out.println(Arrays.toString(countBits(20)));
-      */
+        Arrays.sort(output);
+        return output;
+    }
+
+    public static void main(String[] args) {
+        int[] nums= {-4,-1,0,3,10};
+        System.out.println("sortedSquares="+Arrays.toString(sortedSquares(nums)));
+
     }
     }
