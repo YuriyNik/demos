@@ -225,6 +225,17 @@ public class NumbersTasks {
         Arrays.sort(output);
         return output;
     }
+//2540. Minimum Common Value
+    public int getCommon(int[] nums1, int[] nums2) {
+        Map<Integer,Integer> mnum = new HashMap<>();
+        for (int j : nums2) {
+            mnum.put(j, mnum.getOrDefault(j, 0)+1);
+        }
+        for (int v : nums1) {
+            if (mnum.getOrDefault(v,0)>0) return v;
+        }
+        return  -1;
+    }
 
     public static void main(String[] args) {
         int[] nums= {-4,-1,0,3,10};
