@@ -237,6 +237,17 @@ public class NumbersTasks {
         return  -1;
     }
 
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> setNums1 = new HashSet<>();
+        for (Integer num:nums1){
+            setNums1.add(num);
+        }
+        Set<Integer> result = new HashSet<>();
+        for (Integer num:nums2){
+            if (setNums1.contains(num)) result.add(num);
+        }
+    return result.stream().mapToInt(Integer::intValue).toArray();
+    }
     public static void main(String[] args) {
         int[] nums= {-4,-1,0,3,10};
         System.out.println("sortedSquares="+Arrays.toString(sortedSquares(nums)));
