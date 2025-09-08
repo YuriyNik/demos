@@ -27,4 +27,9 @@ public class StringTasks {
 
         return Arrays.stream(words).max(Comparator.comparingInt(String::length)).orElse("");
     }
+
+    public boolean isPalindrome(String s){
+        return false;
+    }
+
 }
