@@ -82,6 +82,34 @@ public class StringTasksTest {
 
     }
 
+    @Test
+    void isOneEditAwayTest(){
+        StringTasks stringTasks = new StringTasks();
+        assertTrue(stringTasks.isOneEditAway("pale", "ple"));   // удаление
+        assertTrue(stringTasks.isOneEditAway("pales", "pale")); // удаление
+        assertTrue(stringTasks.isOneEditAway("pale", "bale"));  // замена
+        assertFalse(stringTasks.isOneEditAway("pale", "bake")); // >1 изменения
+        assertTrue(stringTasks.isOneEditAway("a", "a"));        // 0 изменений
+    }
 
+    @Test
+    void numJewelsInStonesTest(){
+        StringTasks stringTasks = new StringTasks();
+        assertEquals(3, stringTasks.numJewelsInStones("aA", "aAAbbbb"));
+// 'a','A','A'
+        assertEquals(0, stringTasks.numJewelsInStones("z", "ZZ"));
+// 'z' нет в "ZZ"
+        assertEquals(2, stringTasks.numJewelsInStones("b", "bBBb"));
+// только два 'b'
+    }
 
+    @Test
+    void areAnagramsTest(){
+        StringTasks stringTasks = new StringTasks();
+        assertEquals(1, stringTasks.areAnagrams("listen", "silent"));
+        assertEquals(1, stringTasks.areAnagrams("triangle", "integral"));
+        assertEquals(0, stringTasks.areAnagrams("apple", "pale"));
+        assertEquals(0, stringTasks.areAnagrams("aabb", "ab"));
+        assertEquals(1, stringTasks.areAnagrams("aabb", "baba"));
+    }
 }
