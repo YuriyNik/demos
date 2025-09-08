@@ -1,10 +1,8 @@
 package dryrun;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import java.util.List;
 
 public class StringTasks {
     public String firstEvenLengthWord(String s){
@@ -49,15 +47,63 @@ public class StringTasks {
     }
 
     public String reverseWords(String s) {
-        return "";
+        String[] words = s.split(" ");
+        StringBuilder result= new StringBuilder();
+//        for (int i = words.length-1; i >=0 ; i--) {
+//            result.append(words[i]);
+//            if (i>0) {result.append(" ");}
+//        }
+//        return result.toString();
+//        Collections.reverse(Arrays.asList(words));
+//        return String.join(" ",words);
+        return IntStream.range(0, words.length)
+                .mapToObj(i->words[words.length-i-1])
+                .collect(Collectors.joining(" "));
     }
 
     public String rleEncode(String s) {
+        if (!s.matches("[A-Z]*")) {
+            throw  new IllegalArgumentException();
+        }
+        if (!s.isEmpty()){
+        StringBuilder result = new StringBuilder();
+        int count = 1;
+        char currCh = s.charAt(0);
+            for (int i = 1; i < s.length(); i++) {
+                char ch = s.charAt(i);
+                if (currCh==ch){
+                    count++;
+                } else {
+                    result.append(currCh);
+                    if (count>1){
+                        result.append(count);
+                    }
+                    currCh=ch;
+                    count=1;
+                }
+
+            }
+            result.append(currCh);
+            if (count>1){
+                result.append(count);
+            }
+        return result.toString();
+        }
+
         return "";
     }
 
     public List<List<String>> groupAnagrams(String[] strs){
-        return null;
+
+        Map<String, List<String>> result = new HashMap<>();
+        for (String word:strs) {
+            char[] chars = word.toCharArray();
+            Arrays.sort(chars);
+            String key = new String(chars);
+            result.computeIfAbsent(key, k->new ArrayList<>()).add(word);
+        }
+
+        return result.values().stream().toList();
     }
 
 

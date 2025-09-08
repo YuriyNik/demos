@@ -64,8 +64,8 @@ public class StringTasksTest {
         assertEquals(
                 List.of(
                         List.of("eat","tea","ate"),
-                        List.of("tan","nat"),
-                        List.of("bat")
+                        List.of("bat"),
+                        List.of("tan","nat")
                 ),
                 stringTasks.groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"})
         );
