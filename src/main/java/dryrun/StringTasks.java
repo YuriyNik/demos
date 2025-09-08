@@ -11,4 +11,7 @@ public class StringTasks {
         }
         return "";
     }
+    public String longestWord(String s){
+        return "";
+    }
 }
