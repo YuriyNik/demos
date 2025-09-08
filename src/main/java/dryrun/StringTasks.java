@@ -2,6 +2,7 @@ package dryrun;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.stream.IntStream;
 
 public class StringTasks {
     public String firstEvenLengthWord(String s){
@@ -29,7 +30,20 @@ public class StringTasks {
     }
 
     public boolean isPalindrome(String s){
-        return false;
+        String input = s.replaceAll("\\s","").toLowerCase();
+// Option 1
+        int length = input.length();
+//        for (int i = 0; i < length/2; i++) {
+//            if (input.charAt(i)!=input.charAt(length-1-i)){
+//                return false;
+//            }
+//        }
+//        return true;
+// Option 2 with reverse
+//    String reverse = new StringBuilder(input).reverse().toString();
+//    return input.equals(reverse);
+       return IntStream.range(0,length/2)
+               .allMatch(i -> input.charAt(i)==input.charAt(length-1-i));
     }
 
 }
