@@ -12,6 +12,15 @@ public class StringTasks {
         return "";
     }
     public String longestWord(String s){
-        return "";
+        String[] words = s.split("\\s");
+        String longest = "";
+        for (String word:words){
+            if (word.length()>longest.length())
+            {
+                longest=word;
+            }
+        }
+
+        return longest;
     }
 }
