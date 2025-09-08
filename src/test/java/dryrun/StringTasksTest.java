@@ -2,7 +2,7 @@ package dryrun;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringTasksTest {
 
@@ -23,4 +23,15 @@ public class StringTasksTest {
         assertEquals("Java",   stringTasks.longestWord("Java is cool"));
         assertEquals("example",stringTasks.longestWord("this is an example"));
     }
+
+    @Test
+    void isPalindrome_test(){
+        StringTasks stringTasks = new StringTasks();
+        assertTrue(stringTasks.isPalindrome("madam"));
+        assertTrue(stringTasks.isPalindrome("A man a plan a canal Panama"));
+        assertTrue(stringTasks.isPalindrome("No lemon no melon"));
+        assertFalse(stringTasks.isPalindrome("hello"));
+        assertFalse(stringTasks.isPalindrome("Java"));
+    }
+
 }
