@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
+import java.util.List;
+
 public class StringTasks {
     public String firstEvenLengthWord(String s){
         String[] words = s.split("\\s");
@@ -45,5 +47,19 @@ public class StringTasks {
        return IntStream.range(0,length/2)
                .allMatch(i -> input.charAt(i)==input.charAt(length-1-i));
     }
+
+    public String reverseWords(String s) {
+        return "";
+    }
+
+    public String rleEncode(String s) {
+        return "";
+    }
+
+    public List<List<String>> groupAnagrams(String[] strs){
+        return null;
+    }
+
+
 
 }
