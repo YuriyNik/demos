@@ -107,15 +107,75 @@ public class StringTasks {
     }
 //task 11
     public boolean isOneEditAway(String s1, String s2) {
-        return false;
+        if (s1.equals(s2)) return true;
+        if (Math.abs(s1.length() - s2.length()) > 1) return false;
+
+        int i = 0, j = 0, changes = 0;
+        while (i < s1.length() && j < s2.length()) {
+            if (s1.charAt(i) != s2.charAt(j)) {
+                changes++;
+                if (changes > 1) return false;
+
+                if (s1.length() > s2.length()) {
+                    i++;
+                    continue; // сдвинули только i
+                } else if (s2.length() > s1.length()) {
+                    j++;
+                    continue; // сдвинули только j
+                }
+                // если равны по длине → замена, двигаем оба
+            }
+            i++;
+            j++;
+        }
+        // если разные длины, то может остаться ещё один символ
+        return true;
     }
 //task 13
     public int numJewelsInStones(String jewels, String stones){
-        return 0;
+//       Option 1 with collections
+//        Set<Character> jewelRepo = new HashSet<>();
+//        for (int i = 0; i < jewels.length(); i++) {
+//            jewelRepo.add(jewels.charAt(i));
+//        }
+//        int result=0;
+//        for (char c : stones.toCharArray()) {
+//            if (jewelRepo.contains(c)) {
+//                result++;
+//            }
+//        }
+//        return result;
+//        Option2 with streams API
+        Set<Character> jewelRepo = jewels.chars()
+                .mapToObj(c -> (char)c)
+                .collect(Collectors.toSet());
+        return (int)stones.chars()
+                .mapToObj(c -> (char)c)
+                .filter(jewelRepo::contains)
+                .count();
     }
 //task 17
     public int areAnagrams(String s1, String s2){
-        return 0;
+        if (s1.length() != s2.length()) return 0;
+//        char[] a = s1.toCharArray();
+//        char[] b = s2.toCharArray();
+//        Arrays.sort(a);
+//        Arrays.sort(b);
+//        return Arrays.equals(a, b) ? 1 : 0;
+
+        Map<Character, Integer> count = new HashMap<>();
+        for (char c : s1.toCharArray()){
+            count.put(c,count.getOrDefault(c,0)+1);
+        }
+        for (char c: s2.toCharArray()){
+            if(!count.containsKey(c)) return 0;
+            count.put(c, count.get(c)-1);
+            if (count.get(c)==0) {
+                count.remove(c);
+            }
+        }
+    return count.isEmpty()? 1 : 0;
+
     }
 
 
