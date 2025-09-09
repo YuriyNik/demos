@@ -2,7 +2,38 @@ package dryrun.balancer;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.*;
+
 public class LoadBalancerTest {
+
+    @Test
+    void loadBalancerService_concurrent() throws InterruptedException, ExecutionException {
+        LoadBalancer loadBalancer = new LoadBalancerService();
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        List<Callable<String>> tasks = new ArrayList<>();
+        for (int i = 1; i < 6; i++) {
+            loadBalancer.register("Srv"+i);
+        }
+        for (int i = 0; i < 100 ; i++) {
+            tasks.add(()-> loadBalancer.get(LoadBalancer.Strategy.ROUND_ROBIN));
+        }
+        List<Future<String>> futures = executorService.invokeAll(tasks);
+        Map<String, Integer> stats = new HashMap<>();
+        for (Future<String> result:futures) {
+            String srv = result.get();
+            stats.put(srv, stats.getOrDefault(srv,0)+1);
+        }
+        System.out.println(stats);
+        executorService.shutdown();
+        executorService.awaitTermination(1,TimeUnit.SECONDS);
+
+
+    }
+
     @Test
     void loadBalancerService_test(){
         LoadBalancer loadBalancer = new LoadBalancerService();
