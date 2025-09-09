@@ -25,7 +25,10 @@ public class LoadBalancerTest {
         Map<String, Integer> stats = new HashMap<>();
         for (Future<String> result:futures) {
             String srv = result.get();
-            stats.put(srv, stats.getOrDefault(srv,0)+1);
+//       Opt1 getOrDefault
+//            stats.put(srv, stats.getOrDefault(srv,0)+1);
+//       Opt2 merge
+            stats.merge(srv, 1, Integer::sum);
         }
         System.out.println(stats);
         executorService.shutdown();
