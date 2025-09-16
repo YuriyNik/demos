@@ -2,7 +2,9 @@ package dryrun.urlshortener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class UrlShortenerService implements UrlShortener{
 
@@ -12,6 +14,14 @@ public class UrlShortenerService implements UrlShortener{
 
     private String getCharRandomCode(){
         return UUID.randomUUID().toString().replace("-","").substring(0,4);
+    }
+    private String getRandom (int length) {
+        String chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        return random.ints(length, 0, chars.length())
+                .mapToObj(chars::charAt)
+                .map(String::valueOf)
+                .collect(Collectors.joining());
     }
 
     @Override
@@ -26,7 +36,7 @@ public class UrlShortenerService implements UrlShortener{
 
         int MAX_ATTEMPTS = 3;
         for (int i = 0; i < MAX_ATTEMPTS; i++) {
-            String key = getCharRandomCode();
+            String key = getRandom(6);
             if (urlsByCode.putIfAbsent(key,longUrl)==null){
                 return key;
             }
