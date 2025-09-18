@@ -106,7 +106,7 @@ public class StringTasksTest {
     @Test
     void areAnagramsTest(){
         StringTasks stringTasks = new StringTasks();
-        assertEquals(1, stringTasks.areAnagrams("listen", "silent"));
+        assertEquals(1, stringTasks.    areAnagrams("listen", "silent"));
         assertEquals(1, stringTasks.areAnagrams("triangle", "integral"));
         assertEquals(0, stringTasks.areAnagrams("apple", "pale"));
         assertEquals(0, stringTasks.areAnagrams("aabb", "ab"));
