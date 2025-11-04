@@ -1,6 +1,7 @@
 package dryrun.nearestShelter;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FindShelterService {
     private final Map<Integer, Coordinates> shelters = new HashMap<>();
@@ -25,20 +26,30 @@ public class FindShelterService {
     }
 
     private void findNearest(double x, double y){
-        final Map<Integer, Double> distances = new HashMap<>();
-        for (Map.Entry<Integer,Coordinates> entry: shelters.entrySet()){
-            Integer id = entry.getKey();
-            Coordinates shelterCoords = entry.getValue();
-            distances.put(id,euclidean(x,y,shelterCoords.getX(),shelterCoords.getY()));
-        }
-        System.out.println(distances);
-        List<Map.Entry<Integer, Double>> list = new ArrayList<>(distances.entrySet());
-        list.sort(Comparator.comparingDouble(Map.Entry::getValue));
-
-        for (int i = 0; i < Math.min(2, list.size()); i++) {
-            Map.Entry<Integer, Double> e = list.get(i);
-            System.out.println("Shelter " + e.getKey() + " → " + e.getValue());
-        }
+//        final Map<Integer, Double> distances = new HashMap<>();
+//        for (Map.Entry<Integer,Coordinates> entry: shelters.entrySet()){
+//            Integer id = entry.getKey();
+//            Coordinates shelterCoords = entry.getValue();
+//            distances.put(id,euclidean(x,y,shelterCoords.getX(),shelterCoords.getY()));
+//        }
+//        System.out.println(distances);
+//        List<Map.Entry<Integer, Double>> list = new ArrayList<>(distances.entrySet());
+//        list.sort(Comparator.comparingDouble(Map.Entry::getValue));
+//
+//        for (int i = 0; i < Math.min(2, list.size()); i++) {
+//            Map.Entry<Integer, Double> e = list.get(i);
+//            System.out.println("Shelter " + e.getKey() + " → " + e.getValue());
+//        }
+        Map<Integer, Double> distances = shelters.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> euclidean(x,y,e.getValue().getX(),e.getValue().getY())
+                ));
+        List<Map.Entry<Integer, Double>> nearest = distances.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .limit(2)
+                .toList();
+        nearest.forEach(e -> System.out.println(e.getKey() + " away for "+e.getValue()));
 
     }
 
