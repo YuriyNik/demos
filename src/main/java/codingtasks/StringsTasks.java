@@ -143,12 +143,34 @@ public class StringsTasks {
 
     }
 
+    public static char firstUniqueChar(String s) {
+        LinkedHashMap<Character, Integer> orderedMap = new LinkedHashMap<>();
+        char []words = s.toCharArray();
+        for (char word:words){
+//            Integer counts = orderedMap.getOrDefault(word,0);
+//            orderedMap.put(word,counts+1);
+            orderedMap.merge(word, 1, Integer::sum);
+        }
+//        for(Map.Entry<Character, Integer> entry: orderedMap.entrySet() ){
+//            if (entry.getValue().equals(1)){
+//                return entry.getKey();
+//            }
+//
+//        }
+       return orderedMap.entrySet()
+               .stream()
+               .filter(e->e.getValue() == 1)
+               .map(Map.Entry::getKey)
+               .findFirst()
+               .orElse('_');
+    }
+
 
     public static void main(String[] args) {
      //   strStr("sadbutsad","sad");
-        System.out.println(buyChoco(new int[]{1,2,2},3));
-        System.out.println(buyChoco(new int[]{3,2,3},3));
-
+//        System.out.println(buyChoco(new int[]{1,2,2},3));
+//        System.out.println(buyChoco(new int[]{3,2,3},3));
+        System.out.println(firstUniqueChar("swiss"));
 
 
 
