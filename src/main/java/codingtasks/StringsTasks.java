@@ -110,21 +110,7 @@ public class StringsTasks {
         return changes<=1;
     }
 
-    public static int lengthOfLongestSubstring(String s) {
-        if (s == null || s.isEmpty()) return 0;
-        HashMap<Character, Integer> map = new HashMap<>(); // Для хранения последних позиций символов
-        int maxLength = 0; // Максимальная длина подстроки без повторений
 
-        for (int start = 0, end = 0; end < s.length(); end++) {
-            char currentChar = s.charAt(end);
-            if (map.containsKey(currentChar)) {
-                start = Math.max(start, map.get(currentChar) + 1); // Сдвигаем начало окна, если встретили повторение
-            }
-            map.put(currentChar, end); // Обновляем последнюю позицию символа
-            maxLength = Math.max(maxLength, end - start + 1); // Обновляем максимальную длину
-        }
-        return maxLength;
-    }
 
     public static int strStr(String haystack, String needle) {
         System.out.println(haystack.indexOf(needle));
@@ -145,32 +131,90 @@ public class StringsTasks {
 
     public static char firstUniqueChar(String s) {
         LinkedHashMap<Character, Integer> orderedMap = new LinkedHashMap<>();
-        char []words = s.toCharArray();
-        for (char word:words){
-//            Integer counts = orderedMap.getOrDefault(word,0);
-//            orderedMap.put(word,counts+1);
-            orderedMap.merge(word, 1, Integer::sum);
+        char []chars = s.toCharArray();
+        for (char ch : chars){
+            orderedMap.merge(ch, 1, Integer::sum);
         }
-//        for(Map.Entry<Character, Integer> entry: orderedMap.entrySet() ){
-//            if (entry.getValue().equals(1)){
-//                return entry.getKey();
-//            }
-//
-//        }
-       return orderedMap.entrySet()
-               .stream()
-               .filter(e->e.getValue() == 1)
-               .map(Map.Entry::getKey)
-               .findFirst()
-               .orElse('_');
+
+        System.out.println(orderedMap);
+        for (Map.Entry<Character, Integer> entry: orderedMap.entrySet()){
+            if (entry.getValue().equals(1)) {
+                return entry.getKey();
+            }
+        }
+
+        return orderedMap.entrySet().stream()
+                .filter(e->e.getValue()==1)
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse('_');
+    }
+
+   public static  boolean isValid(String s){
+       Stack<Character> stack = new Stack<>();
+       Map<Character, Character> map = new HashMap<>();
+       map.put(')', '(');
+       map.put('}', '{');
+       map.put(']', '[');
+       char []chars = s.toCharArray();
+       for (char ch:chars){
+           if (map.containsValue(ch)){
+               stack.push(ch);
+           } else {
+               if (map.containsKey(ch))
+               {
+                   if (stack.empty() || map.get(ch)!=stack.pop()){
+                       return false;
+                   }
+               }
+
+           }
+       }
+       return stack.isEmpty();
+
+   }
+
+
+
+    public static int lengthOfLongestSubstring(String s) {
+        if ( (s==null) || s.isEmpty() ) {return 0;}
+        Map <Character, Integer> map = new HashMap<>();
+        int maxLen = 0;
+        for (int start=0, end=0; end<s.length();end++){
+            char ch = s.charAt(end);
+            if (map.containsKey(ch)){
+                start = Math.max(start, map.get(ch) + 1);
+            }
+            map.put(ch,end);
+            maxLen = Math.max(maxLen,end-start+1);
+
+        }
+        return maxLen;
     }
 
 
     public static void main(String[] args) {
-     //   strStr("sadbutsad","sad");
-//        System.out.println(buyChoco(new int[]{1,2,2},3));
-//        System.out.println(buyChoco(new int[]{3,2,3},3));
-        System.out.println(firstUniqueChar("swiss"));
+
+//Input: "abcabcbb" → 3   ("abc")
+//Input: "bbbbb"    → 1   ("b")
+//Input: "pwwkew"   → 3   ("wke")
+//Input: ""         → 0
+
+        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(lengthOfLongestSubstring("bbbbb"));
+        System.out.println(lengthOfLongestSubstring("pwwkew"));
+        System.out.println(lengthOfLongestSubstring(""));
+
+
+//        Input: "()[]{}"   → true
+//        Input: "(]"       → false
+//        Input: "([{}])"   → true
+//        Input: "((("      → false
+//        System.out.println("()[]{}=>"+isValid("()[]{}"));
+//        System.out.println("(]"+isValid("(]"));
+//        System.out.println("([{}])"+isValid("([{}])"));
+//        System.out.println("((("+isValid("((("));
+
 
 
 

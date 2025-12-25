@@ -82,23 +82,7 @@ public class NumbersTasks {
     public static int findMaxGuests(List<int[]> stays) {
         return -1;
     }
-    public static int[][] mergeIntervals(int[][] intervals) {
 
-        if (intervals==null) return null;
-        if (intervals.length<=1) return intervals;
-
-        Arrays.sort(intervals, (a,b) -> Integer.compare(a[0],b[0]));
-        LinkedList<int[]> merged = new LinkedList<>();
-        for (int[] interval:intervals){
-            if (merged.isEmpty() || merged.getLast()[1] < interval[0]) {
-                merged.add(interval);
-            } else {
-                merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);
-            }
-        }
-
-        return merged.toArray(new int[merged.size()][]);
-    }
 
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums); // Шаг 1: Сортировка массива
@@ -248,9 +232,80 @@ public class NumbersTasks {
         }
     return result.stream().mapToInt(Integer::intValue).toArray();
     }
+
+    public static int[] twoSum(int[] nums, int target){
+        Map<Integer,Integer> pair = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (pair.containsKey(target-num)) {
+                return new int[]{ pair.get(target - num), i};
+                }
+            pair.put(num,i);
+            }
+            return null;
+        }
+    public static int[][] mergeIntervals(int[][] intervals) {
+
+        if (intervals==null) return null;
+        if (intervals.length<=1) return intervals;
+
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        LinkedList<int[]> merged = new LinkedList<>();
+        for (int[] interval:intervals){
+            if (merged.isEmpty() || merged.getLast()[1] < interval[0]) {
+                merged.add(interval);
+            } else {
+                merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);
+            }
+        }
+
+        return merged.toArray(new int[merged.size()][]);
+    }
+
     public static void main(String[] args) {
-        int[] nums= {-4,-1,0,3,10};
-        System.out.println("sortedSquares="+Arrays.toString(sortedSquares(nums)));
+//        int[] nums= {-4,-1,0,3,10};
+//        System.out.println("sortedSquares="+Arrays.toString(sortedSquares(nums)));
+//        nums = [2,7,11,15], target = 9 → [0,1]
+//        nums = [3,2,4], target = 6 → [1,2]
+//        nums = [3,3], target = 6 → [0,1]
+//        System.out.println("nums = [2,7,11,15], target = 9 → [0,1] =>"+ Arrays.toString(twoSum(new int[]{2, 7, 11, 15}, 9)));
+//        System.out.println("nums = [3,2,4], target = 6 → [1,2]=>"+ Arrays.toString(twoSum(new int[]{3, 2, 4}, 6)));
+//        System.out.println("nums = [3,3], target = 6 → [0,1] =>"+ Arrays.toString(twoSum(new int[]{3, 3}, 6)));
+
+        int[][] test1 = { {1,3}, {2,6}, {8,10}, {15,18} };
+        print(mergeIntervals(test1));
+        // [[1,6], [8,10], [15,18]]
+
+        int[][] test2 = { {1,4}, {4,5} };
+        print(mergeIntervals(test2));
+        // [[1,5]]
+
+        int[][] test3 = { {1,4}, {0,2}, {3,5} };
+        print(mergeIntervals(test3));
+        // [[0,5]]
+
+        int[][] test4 = { {1,4} };
+        print(mergeIntervals(test4));
+        // [[1,4]]
+
+        int[][] test5 = { };
+        print(mergeIntervals(test5));
+        // []
+
+        int[][] test6 = { {1,4}, {5,6} };
+        print(mergeIntervals(test6));
+        // [[1,4], [5,6]]
+
 
     }
+
+    static void print(int[][] arr) {
+        System.out.print("[");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("[" + arr[i][0] + "," + arr[i][1] + "]");
+            if (i < arr.length - 1) System.out.print(", ");
+        }
+        System.out.println("]");
+    }
+
     }
