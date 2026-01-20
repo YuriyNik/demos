@@ -1,0 +1,28 @@
+
+1)HashMap / HashSet
+
+2)Two pointers
+
+3)Sliding window
+
+4)Stack / Queue
+
+5)Sorting + intervals
+
+6)Strings
+
+7)Trees traversal
+
+8)LRU cache (highly asked)
+
+9)Simple BFS
+
+10)Design-lite (implement class with API)
+
+Твоя цель:
+    к концу недели любую Medium решать спокойно за 25–30 минут с объяснением
+Формат дня:
+    2–3 часа coding
+    2 часа system design / deep dive
+
+Implement LRU Cache with get/put in O(1) - LRUCache.java
