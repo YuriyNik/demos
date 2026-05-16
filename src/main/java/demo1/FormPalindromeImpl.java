@@ -11,6 +11,7 @@ public class FormPalindromeImpl {
         for (char ch:chars){
           charsCount.put(ch, charsCount.getOrDefault(ch,0)+1);
         }
+        System.out.println(charsCount);
         int oddCount = 0;
         for (int count : charsCount.values()) {
             if (count % 2 != 0) {
@@ -25,11 +26,11 @@ public class FormPalindromeImpl {
     }
 
     public static void main(String[] args) {
-        FormPalindromeImpl.canFormPalindrome("carrace"); // можно “racecar”
-        FormPalindromeImpl.canFormPalindrome("aabb");    // “abba”
-        FormPalindromeImpl.canFormPalindrome("abc");    // не может
-        FormPalindromeImpl.canFormPalindrome("");        // пустая строка считается
-        FormPalindromeImpl.canFormPalindrome("AaBb");
+        System.out.println(FormPalindromeImpl.canFormPalindrome("carrace")); // можно “racecar”
+        System.out.println(FormPalindromeImpl.canFormPalindrome("aabb"));    // “abba”
+        System.out.println(FormPalindromeImpl.canFormPalindrome("abc"));    // не может
+        System.out.println(FormPalindromeImpl.canFormPalindrome(""));        // пустая строка считается
+        System.out.println(FormPalindromeImpl.canFormPalindrome("AaBb"));
 
     }
 }

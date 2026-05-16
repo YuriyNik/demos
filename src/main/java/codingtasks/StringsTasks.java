@@ -1,9 +1,17 @@
 package codingtasks;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class StringsTasks {
     public static String getFirstEvenString(String sentence){
+
+        Map<Character, Integer> map = new HashMap<>();
+        Map<String, Integer> collect = Arrays.stream(sentence.split(" ")).collect(Collectors.toMap(wrd -> wrd, wrd -> 1, Integer::sum));
+        Collection<Integer> values = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        values.add(1);
+
         String[] words = sentence.split("\\s");
         for (String word:words) {
             if (word.length()%2==0){

@@ -4,6 +4,21 @@ import java.util.*;
 
 public class NumbersTasks {
 
+    public static void moveZeroes(int[] nums) {
+        int lastNonZeroIndex = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[lastNonZeroIndex] = nums[i];
+                lastNonZeroIndex++;
+            }
+        }
+        for (int i = lastNonZeroIndex; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+    }
+
+
     public static int findMedian(int a, int b, int c) {
         int[] array={a,b,c};
         Arrays.sort(array);
@@ -251,6 +266,11 @@ public class NumbersTasks {
     public static void main(String[] args) {
         int[] nums= {-4,-1,0,3,10};
         System.out.println("sortedSquares="+Arrays.toString(sortedSquares(nums)));
+        int[] nums2= {0,1,0,3,12};
+        moveZeroes(nums2);
+//        print nums2 array
+        System.out.println("sortedSquares="+Arrays.toString(nums2));
+
 
     }
     }
